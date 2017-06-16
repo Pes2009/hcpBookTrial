@@ -17,7 +17,7 @@
       readingList = readingListManager.getReadingList();
     else
       readingList = new java.util.ArrayList<String>();
-
+    
     // Store the reading list in request context so we can bind it to an HTML
     // table in the JSP:
     request.setAttribute("readingList", readingList);

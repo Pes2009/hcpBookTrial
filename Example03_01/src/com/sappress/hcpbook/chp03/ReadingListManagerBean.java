@@ -4,44 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 
 /**
- * Session Bean implementation class ReadingListManagerBean
+ * A simple stateful session bean that's used to implement the API behind
+ * the reading list demo application. 
  */
-@Stateless
+@Stateful
 @LocalBean
-public class ReadingListManagerBean implements ReadingListManagerBeanLocal {
+public class ReadingListManagerBean implements ReadingListManagerBeanLocal
+{
+  private List<String> readingList = new ArrayList<String>();
+  
+  @Override
+  public void addTitle(String title)
+  {
+    readingList.add(title);
+  }
 
-	private List<String> readingList = new ArrayList<>();
-	
-    public ReadingListManagerBean() {
-        // TODO Auto-generated constructor stub
-    }
+  @Override
+  public boolean removeTitle(String title)
+  {
+    return readingList.remove(title);
+  }
 
-	@Override
-	public void addTitle(String title) {
-		// TODO Auto-generated method stub
-		readingList.add(title);
-		
-	}
+  @Override
+  public int getCount()
+  {
+    return readingList.size();
+  }
 
-	@Override
-	public boolean removeTitle(String title) {
-		// TODO Auto-generated method stub
-		return readingList.remove(title);
-	}
-
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return readingList.size();
-	}
-
-	@Override
-	public List<String> getReadingList() {
-		// TODO Auto-generated method stub
-		return readingList;
-	}
-
+  @Override
+  public List<String> getReadingList()
+  {
+    return readingList;
+  }
 }
